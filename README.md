@@ -10,3 +10,4 @@ O objetivo deste app é exemplificar o uso da **Paging Library 3** em conjunto c
 - [RxJava](https://github.com/ReactiveX/RxJava)
 - [ViewBinding](https://developer.android.com/topic/libraries/view-binding?hl=pt-br)
 - [Retrofit](https://github.com/square/retrofit)
+- [Glide](https://bumptech.github.io/glide/doc/getting-started.html)
