@@ -18,7 +18,7 @@ class MainViewModel @ViewModelInject constructor(
     val characters by lazy {
         Pager(
             config = PagingConfig(
-                pageSize = 10,
+                pageSize = 20,
                 enablePlaceholders = true
             ),
             pagingSourceFactory = { CharacterDataSource(getCharacters) }
