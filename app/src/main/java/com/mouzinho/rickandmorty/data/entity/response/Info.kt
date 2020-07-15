@@ -2,7 +2,7 @@ package com.mouzinho.rickandmorty.data.entity.response
 
 data class Info(
     val count: Int,
-    val next: String,
+    val next: String?,
     val pages: Int,
-    val prev: Any
+    val prev: String?
 )

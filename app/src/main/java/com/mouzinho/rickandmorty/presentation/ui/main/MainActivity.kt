@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun subscribeUi() {
         viewModel.characters.observe(this, Observer {
-            charactersAdapter.submitList(it)
+            charactersAdapter.submitData(lifecycle, it)
         })
     }
 }

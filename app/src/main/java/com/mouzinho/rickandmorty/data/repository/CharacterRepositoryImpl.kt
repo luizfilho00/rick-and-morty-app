@@ -3,7 +3,7 @@ package com.mouzinho.rickandmorty.data.repository
 import com.mouzinho.rickandmorty.data.entity.response.CharacterData
 import com.mouzinho.rickandmorty.data.service.ApiService
 import com.mouzinho.rickandmorty.domain.repository.CharacterRepository
-import io.reactivex.rxjava3.core.Single
+import io.reactivex.Single
 import javax.inject.Inject
 
 class CharacterRepositoryImpl @Inject constructor(
