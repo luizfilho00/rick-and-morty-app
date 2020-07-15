@@ -1,24 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="16dp"
-    tools:ignore="UseCompoundDrawables">
+    android:clipToPadding="false"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="8dp">
 
-    <TextView
-        android:id="@+id/text_view"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
-        tools:text="Rick" />
+        android:background="#4F5D75"
+        tools:ignore="UseCompoundDrawables">
 
-    <ImageView
-        android:id="@+id/image_view"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
-        android:layout_marginTop="16dp"
-        tools:ignore="ContentDescription" />
-</LinearLayout>
+        <ImageView
+            android:id="@+id/image_view"
+            android:layout_width="140dp"
+            android:scaleType="fitXY"
+            android:layout_height="match_parent"
+            tools:ignore="ContentDescription" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="8dp">
+
+            <TextView
+                android:id="@+id/text_view_name"
+                android:layout_width="match_parent"
+                android:textColor="#fff"
+                android:textAlignment="textStart"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                tools:text="Rick" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:textColor="#BFC0C0"
+                android:layout_marginTop="8dp"
+                android:textAlignment="textStart"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:text="Última localização conhecida:" />
+
+            <TextView
+                android:id="@+id/text_view_last_location"
+                android:layout_width="match_parent"
+                android:textColor="#fff"
+                android:textAlignment="textStart"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                tools:text="Planet Squanch" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:textColor="#BFC0C0"
+                android:layout_marginTop="8dp"
+                android:textAlignment="textStart"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:text="Origem:" />
+
+            <TextView
+                android:id="@+id/text_view_origin"
+                android:layout_width="match_parent"
+                android:textColor="#fff"
+                android:textAlignment="textStart"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                tools:text="Lawnowner Dog" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

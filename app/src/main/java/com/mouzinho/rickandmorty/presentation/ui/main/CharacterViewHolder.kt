@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.mouzinho.rickandmorty.R
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.mouzinho.rickandmorty.data.entity.response.CharacterData
 import com.mouzinho.rickandmorty.databinding.ItemCharacterBinding
 
@@ -13,11 +13,14 @@ class CharacterViewHolder private constructor(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(characterData: CharacterData?) {
-        binding.textView.text = characterData?.name
+        binding.textViewName.text = characterData?.name
+        binding.textViewOrigin.text = characterData?.origin?.name
+        binding.textViewLastLocation.text = characterData?.location?.name
         with(binding.imageView) {
             Glide.with(this)
                 .load(characterData?.image)
-                .circleCrop()
+                .transform(RoundedCorners(8))
+                .centerCrop()
                 .into(this)
         }
     }
