@@ -6,11 +6,11 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.liveData
 import com.mouzinho.rickandmorty.data.paging.CharacterDataSource
-import com.mouzinho.rickandmorty.data.service.ApiService
+import com.mouzinho.rickandmorty.domain.interactors.GetCharacters
 import io.reactivex.disposables.CompositeDisposable
 
 class MainViewModel @ViewModelInject constructor(
-    private val apiService: ApiService
+    private val getCharacters: GetCharacters
 ) : ViewModel() {
 
     private val disposables = CompositeDisposable()
@@ -21,7 +21,7 @@ class MainViewModel @ViewModelInject constructor(
                 pageSize = 5,
                 enablePlaceholders = true
             ),
-            pagingSourceFactory = { CharacterDataSource(apiService) }
+            pagingSourceFactory = { CharacterDataSource(getCharacters) }
         ).liveData
     }
 

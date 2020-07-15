@@ -1,9 +1,9 @@
 package com.mouzinho.rickandmorty.domain.repository
 
-import com.mouzinho.rickandmorty.data.entity.response.CharacterData
+import com.mouzinho.rickandmorty.data.entity.response.CharacterResponse
 import io.reactivex.Single
 
 interface CharacterRepository {
 
-    fun getAll(page: Int): Single<List<CharacterData>>
+    fun getFromPage(page: Int): Single<CharacterResponse>
 }

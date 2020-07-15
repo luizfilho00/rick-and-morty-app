@@ -18,7 +18,7 @@ import javax.inject.Singleton
 @InstallIn(ApplicationComponent::class)
 object ApiProvider {
 
-    const val API_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+    private const val API_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
 
     @Provides
     @Singleton
@@ -28,21 +28,19 @@ object ApiProvider {
     @Singleton
     fun provideRetrofit(
         gsonConverterFactory: GsonConverterFactory,
-        logginInterceptor: HttpLoggingInterceptor
+        loggingInterceptor: HttpLoggingInterceptor
     ): Retrofit {
         return Retrofit.Builder()
             .baseUrl("https://rickandmortyapi.com/api/")
             .addConverterFactory(gsonConverterFactory)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .client(OkHttpClient.Builder().addInterceptor(logginInterceptor).build())
+            .client(OkHttpClient.Builder().addInterceptor(loggingInterceptor).build())
             .build()
     }
 
     @Provides
     @Singleton
-    fun provideOkHttpInterceptor(
-        httpLoggingLevel: HttpLoggingInterceptor.Level
-    ): HttpLoggingInterceptor {
+    fun provideOkHttpInterceptor(httpLoggingLevel: HttpLoggingInterceptor.Level): HttpLoggingInterceptor {
         return HttpLoggingInterceptor().setLevel(httpLoggingLevel)
     }
 
