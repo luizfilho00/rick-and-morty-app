@@ -28,8 +28,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun subscribeUi() {
-        viewModel.characters.observe(this, Observer {
-            charactersAdapter.submitData(lifecycle, it)
+        viewModel.characters.observe(this, Observer { pagingData ->
+            charactersAdapter.submitData(lifecycle, pagingData)
         })
     }
 }

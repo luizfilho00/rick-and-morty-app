@@ -17,11 +17,11 @@ class CharacterDataSource(
             .onErrorReturn {
                 CharacterResponse(null, null)
             }
-            .map {
+            .map { response ->
                 LoadResult.Page(
-                    it.results ?: emptyList(),
-                    it.info?.prev?.substringAfter("=")?.toInt(),
-                    it.info?.next?.substringAfter("=")?.toInt()
+                    response.results ?: emptyList(),
+                    response.info?.prev?.substringAfter("=")?.toInt(),
+                    response.info?.next?.substringAfter("=")?.toInt()
                 )
             }
     }
