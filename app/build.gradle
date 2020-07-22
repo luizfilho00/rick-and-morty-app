@@ -78,6 +78,4 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-analytics:17.4.4'
     implementation 'com.google.firebase:firebase-crashlytics:17.1.1'
-
-    implementation 'com.airbnb.android:mvrx:1.5.1'
 }

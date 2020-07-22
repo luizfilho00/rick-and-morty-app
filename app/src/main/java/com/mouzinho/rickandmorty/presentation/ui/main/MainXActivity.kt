@@ -3,6 +3,7 @@ package com.mouzinho.rickandmorty.presentation.ui.main
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
+import com.mouzinho.rickandmorty.domain.interactors.CounterState
 import com.mouzinho.rickandmorty.presentation.ui.base.*
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.Observable

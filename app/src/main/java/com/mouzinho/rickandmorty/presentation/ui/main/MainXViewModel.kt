@@ -1,7 +1,7 @@
 package com.mouzinho.rickandmorty.presentation.ui.main
 
 import androidx.hilt.lifecycle.ViewModelInject
-import com.mouzinho.rickandmorty.presentation.ui.base.CounterState
+import com.mouzinho.rickandmorty.domain.interactors.CounterState
 import com.mouzinho.rickandmorty.presentation.ui.base.RxViewModel
 import com.mouzinho.rickandmorty.presentation.ui.base.Success
 import io.reactivex.Observable

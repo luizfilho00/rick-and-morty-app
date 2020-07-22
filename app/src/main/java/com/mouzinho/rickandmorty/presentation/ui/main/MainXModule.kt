@@ -1,6 +1,6 @@
 package com.mouzinho.rickandmorty.presentation.ui.main
 
-import com.mouzinho.rickandmorty.presentation.ui.base.CounterState
+import com.mouzinho.rickandmorty.domain.interactors.CounterState
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
