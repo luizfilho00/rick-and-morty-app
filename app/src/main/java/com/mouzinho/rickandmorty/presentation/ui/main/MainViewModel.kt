@@ -1,32 +1,30 @@
 package com.mouzinho.rickandmorty.presentation.ui.main
 
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.ViewModel
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import androidx.paging.liveData
+import androidx.paging.rxjava2.observable
+import br.com.mouzinho.rxarch.RxViewModel
 import com.mouzinho.rickandmorty.data.paging.CharacterDataSource
 import com.mouzinho.rickandmorty.domain.interactors.GetCharacters
-import io.reactivex.disposables.CompositeDisposable
+import com.mouzinho.rickandmorty.domain.states.CharacterState
 
 class MainViewModel @ViewModelInject constructor(
+    state: CharacterState,
     private val getCharacters: GetCharacters
-) : ViewModel() {
+) : RxViewModel<CharacterState>(state) {
 
-    private val disposables = CompositeDisposable()
-
-    val characters by lazy {
-        Pager(
+    init {
+        val pager = Pager(
             config = PagingConfig(
                 pageSize = 20,
                 enablePlaceholders = true
             ),
             pagingSourceFactory = { CharacterDataSource(getCharacters) }
-        ).liveData
+        )
+        pager.observable
+            .execute { copy(list = it) }
     }
 
-    override fun onCleared() {
-        disposables.dispose()
-        super.onCleared()
-    }
+    fun updateCount() = updateState { copy(count = ++count) }
 }

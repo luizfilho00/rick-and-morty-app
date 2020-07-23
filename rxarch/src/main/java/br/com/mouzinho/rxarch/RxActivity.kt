@@ -1,4 +1,4 @@
-package com.mouzinho.rickandmorty.presentation.ui.base
+package br.com.mouzinho.rxarch
 
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -16,12 +16,8 @@ abstract class RxActivity<S : RxState> : AppCompatActivity(), RxStateViewListene
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                {
-                    updateView()
-                },
-                {
-                    Log.d("RxState", "Activity error -> $it")
-                }
+                { updateView() },
+                { Log.d("RxState", "Activity error -> $it") }
             )
             .let(disposables::add)
     }

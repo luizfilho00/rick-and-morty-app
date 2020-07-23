@@ -1,2 +1,3 @@
+include ':rxarch'
 include ':app'
 rootProject.name = "RickAndMorty"

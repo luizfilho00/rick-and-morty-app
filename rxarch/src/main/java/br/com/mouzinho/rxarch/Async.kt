@@ -1,4 +1,4 @@
-package com.mouzinho.rickandmorty.presentation.ui.base
+package br.com.mouzinho.rxarch
 
 sealed class Async<out T>(val data: T? = null, val error: Throwable? = null) : RxState {
     open operator fun invoke(): T? = data

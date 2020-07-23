@@ -1,17 +1,15 @@
 package com.mouzinho.rickandmorty.presentation.ui.main
 
-import com.mouzinho.rickandmorty.domain.interactors.CounterState
+import com.mouzinho.rickandmorty.domain.states.CharacterState
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
-import dagger.hilt.android.scopes.ActivityScoped
 
 @Module
 @InstallIn(ActivityComponent::class)
-object MainXModule {
+object MainModule {
 
     @Provides
-    @ActivityScoped
-    fun providesCounterState() = CounterState()
+    fun providesCharacterState() = CharacterState()
 }
