@@ -7,6 +7,7 @@ import com.airbnb.mvrx.*
 import com.mouzinho.rickandmorty.data.paging.CharacterDataSource
 import com.mouzinho.rickandmorty.domain.interactors.GetCharacters
 import com.mouzinho.rickandmorty.domain.states.CharacterState
+import com.mouzinho.rickandmorty.presentation.ui.base.MvRxViewModel
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 

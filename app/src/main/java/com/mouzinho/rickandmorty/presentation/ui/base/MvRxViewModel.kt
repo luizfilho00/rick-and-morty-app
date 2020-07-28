@@ -1,4 +1,4 @@
-package com.mouzinho.rickandmorty.presentation.ui.main
+package com.mouzinho.rickandmorty.presentation.ui.base
 
 import com.airbnb.mvrx.BaseMvRxViewModel
 import com.airbnb.mvrx.BuildConfig
