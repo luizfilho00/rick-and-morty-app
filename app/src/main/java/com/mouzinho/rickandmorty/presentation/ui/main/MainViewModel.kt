@@ -3,13 +3,15 @@ package com.mouzinho.rickandmorty.presentation.ui.main
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.rxjava2.observable
-import com.airbnb.mvrx.*
+import com.airbnb.mvrx.MvRxViewModelFactory
+import com.airbnb.mvrx.PersistState
+import com.airbnb.mvrx.ViewModelContext
 import com.mouzinho.rickandmorty.data.paging.CharacterDataSource
 import com.mouzinho.rickandmorty.domain.interactors.GetCharacters
 import com.mouzinho.rickandmorty.domain.states.CharacterState
 import com.mouzinho.rickandmorty.presentation.ui.base.MvRxViewModel
 import org.koin.core.KoinComponent
-import org.koin.core.inject
+import org.koin.core.get
 
 class MainViewModel(
     @PersistState state: CharacterState,
@@ -29,10 +31,9 @@ class MainViewModel(
     }
 
     companion object : MvRxViewModelFactory<MainViewModel, CharacterState>, KoinComponent {
-        private val getCharacters by inject<GetCharacters>()
 
         override fun create(viewModelContext: ViewModelContext, state: CharacterState): MainViewModel? {
-            return MainViewModel(state, getCharacters)
+            return MainViewModel(state, get())
         }
     }
 }
