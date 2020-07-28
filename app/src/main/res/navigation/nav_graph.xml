@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.mouzinho.rickandmorty.presentation.ui.main.MainXFragment"
+        android:name="com.mouzinho.rickandmorty.presentation.ui.main.MainFragment"
         android:label="MainFragment" />
 </navigation>
