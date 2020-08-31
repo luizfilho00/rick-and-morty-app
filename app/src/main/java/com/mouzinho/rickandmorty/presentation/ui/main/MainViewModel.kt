@@ -2,31 +2,50 @@ package com.mouzinho.rickandmorty.presentation.ui.main
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.liveData
-import com.mouzinho.rickandmorty.data.paging.CharacterDataSource
-import com.mouzinho.rickandmorty.domain.interactors.GetCharacters
-import io.reactivex.disposables.CompositeDisposable
+import com.mouzinho.rickandmorty.domain.interactors.GetCharactersImpl
+import com.mouzinho.rickandmorty.presentation.base.BaseViewModel
+import com.mouzinho.rickandmorty.presentation.ui.main.CharactersIntent.LoadCharacters
+import io.reactivex.Observable
+import io.reactivex.ObservableTransformer
+import io.reactivex.subjects.PublishSubject
 
 class MainViewModel @ViewModelInject constructor(
-    private val getCharacters: GetCharacters
-) : ViewModel() {
+    private val getCharacters: GetCharactersImpl,
+    private val charactersStore: CharactersStore
+) : ViewModel(), BaseViewModel<CharactersIntent, CharactersState> {
 
-    private val disposables = CompositeDisposable()
+    private val intentsSubject: PublishSubject<CharactersIntent> = PublishSubject.create()
+    private val statesObservable: Observable<CharactersState> = compose()
 
-    val characters by lazy {
-        Pager(
-            config = PagingConfig(
-                pageSize = 20,
-                enablePlaceholders = true
-            ),
-            pagingSourceFactory = { CharacterDataSource(getCharacters) }
-        ).liveData
+    private val processIntents
+        get() =
+            ObservableTransformer<CharactersIntent, CharactersState> { actions ->
+                actions.publish { shared ->
+                    shared.ofType(LoadCharacters::class.java).compose { getCharacters(0) }
+                }
+            }
+    private val intentFilter: ObservableTransformer<CharactersIntent, CharactersIntent>
+        get() =
+            ObservableTransformer { intents ->
+                intents.publish { shared ->
+                    Observable.merge(
+                        shared.ofType(LoadCharacters::class.java).take(1),
+                        shared.filter { !(LoadCharacters::class.java).isInstance(it) }
+                    )
+                }
+            }
+
+    override fun processIntents(intent: Observable<CharactersIntent>) {
+        intent.subscribe(intentsSubject)
     }
 
-    override fun onCleared() {
-        disposables.dispose()
-        super.onCleared()
-    }
+    override fun states(): Observable<CharactersState> = statesObservable
+
+    private fun compose(): Observable<CharactersState> = intentsSubject
+        .compose(intentFilter)
+        .compose(processIntents)
+        .scan(CharactersState.idle(), charactersStore.reduce)
+        .distinctUntilChanged()
+        .replay(1)
+        .autoConnect(0)
 }

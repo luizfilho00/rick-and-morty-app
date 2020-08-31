@@ -1,11 +1,11 @@
 package com.mouzinho.rickandmorty.presentation.ui.main
 
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import com.mouzinho.rickandmorty.data.entity.response.CharacterData
 
-class CharactersAdapter : PagingDataAdapter<CharacterData, CharacterViewHolder>(
+class CharactersAdapter : ListAdapter<CharacterData, CharacterViewHolder>(
     object : DiffUtil.ItemCallback<CharacterData>() {
         override fun areItemsTheSame(oldItem: CharacterData, newItem: CharacterData): Boolean {
             return oldItem.id == newItem.id
